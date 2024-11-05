@@ -177,20 +177,20 @@ h3,
 h4,
 h5,
 h6 {
-color: #000;
+color: #1c1c1c;
 line-height: 1.2;
 margin-bottom: 0.75rem;
 margin-top: 0;
 }
 
-h1 a { color: #1c1c1c !important; }
-h2 a { color: #1c1c1c !important; }
+h1 a { color: #222756 !important; }
+h2 a { color: #625f9f !important; }
 h3 a { color: #1c1c1c !important; }
 h4 a { color: #1c1c1c !important; }
 h5 a { color: #1c1c1c !important; }
 
-h1 a:visited { color: #1c1c1c !important; }
-h2 a:visited { color: #1c1c1c !important; }
+h1 a:visited { color: #222756 !important; }
+h2 a:visited { color: #625f9f !important; }
 h3 a:visited { color: #1c1c1c !important; }
 h4 a:visited { color: #1c1c1c !important; }
 h5 a:visited { color: #1c1c1c !important; }
