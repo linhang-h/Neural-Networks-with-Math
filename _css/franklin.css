@@ -3,8 +3,8 @@
 ================================================================== */
 
 :root {
-  --block-background: hsl(0, 0%, 94%);
-  --output-background: hsl(0, 0%, 98%);
+  --block-background: hsl(0, 10%, 49%);
+  --output-background: hsl(0, 16%, 62%);
   --small: 14px;
   --normal: 19px;
   --text-color: hsv(0, 0%, 20%);
@@ -107,7 +107,7 @@ html {
     TITLES
 ================================================================== */
 
-.franklin-content h1 { font-size: 30px; }
+.franklin-content h1 { font-size: 22px; }
 .franklin-content h2 { font-size: 25px; }
 .franklin-content h3 { font-size: 20px; }
 
@@ -166,8 +166,8 @@ td {
 }
 
 .franklin-content blockquote {
-  background: var(--block-background);
-  border-left: 7px solid #a8a8a8;
+  background: #4f5a65;
+  border-left: 7px solid #8f4c4c;
   margin: 1.5em 10px;
   padding: 0.5em 10px;
   font-style: italic;
@@ -282,25 +282,30 @@ body { counter-reset: eqnum; }
 }
 
 /* ==================================================================
+    BLOCK QUOTE
+================================================================== */
+
+
+blockquote {
+  background-color: #2b4359;
+}
+
+/* ==================================================================
     CODE & HIGHLIGHT.JS
 ================================================================== */
 
 code {
-  background-color: var(--block-background);
+  background-color: #67819c;
   padding: 0.1em 0.2em;
   border-radius: 2px;
   font-size: var(--small);
 }
 
-/* .franklin-content code { */
-
-/* background-color: rgba(27,31,35,0.05); */
-
-/* padding: 0.1em 0.2em; */
-
-/* border-radius: 2px; */
-
-/* font-size: 90%; } */
+.franklin-content code {
+  background-color: rgba(108, 133, 158, 0.05); 
+  padding: 0.1em 0.2em;
+  border-radius: 2px; 
+  font-size: 90%; }
 
 .hljs {
   font-size: var(--small);
