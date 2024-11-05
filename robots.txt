@@ -1,4 +1,4 @@
-Sitemap: https://tlienart.github.io/FranklinTemplates.jl/sitemap.xml
+Sitemap: https://linhang-h.github.io/Neural-Networks-with-Math/sitemap.xml
 
 User-agent: *
 Disallow:
