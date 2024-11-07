@@ -19,4 +19,5 @@ website_url   = "https://linhang-h.github.io/Neural-Networks-with-Math/"
 Add here global latex commands to use throughout your pages.
 -->
 \newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
 \newcommand{\scal}[1]{\langle #1 \rangle}
