@@ -60,15 +60,14 @@ class SO3_Conv(nn.Module):
     def __init__(self, bandwidth):
         super().__init__()
         self.bandwidth = bandwidth
-        h0 = torch.Tensor(bandwidth)
+        h0 = torch.Tensor(bandwidth, 1)
         self.h0 = nn.Parameter(h0)
         nn.init.kaiming_uniform_(self.h0)
 
     def forward(self, x):
         x = SFT(x, self.bandwidth)
         weights = torch.sqrt(16*math.pi**3/torch.arange(2, 2*b+2, 2)) * self.h0
-        x = (x.T*weights).T
-        return ISFT(x)
+        return ISFT(x*weights)
 ```
 
 Due to finite bandwidth, we can also calculate the Fourier coefficients based on only $(2b+1)^2$ equi-angular sample points on $\mathbb{S}^2$: \begin{align}\label{sampling}
