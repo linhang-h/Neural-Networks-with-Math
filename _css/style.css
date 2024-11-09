@@ -203,7 +203,10 @@ body {
   /* ==================================================================
     TEXT GEOMETRY
   ================================================================== */
-  
+  .franklin-toc {
+    font-size: 20px;
+  }
+
   .franklin-toc li {
   /* Avoid clickable elements being too close together. */
   margin: 0.6rem 0;

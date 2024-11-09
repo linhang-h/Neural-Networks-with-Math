@@ -1,4 +1,10 @@
 # Equivariant Neural Networks
+
+In this post, we will talk about the mathematical concept of equivariants and its use in building neural networks that respect symmetry.
+
+
+\toc
+
 ---
 
 ## What is equivariance
@@ -81,7 +87,7 @@ In practice, the nonlinear layer is done by the standard pointwise operation: \b
     \text{NL}_\sigma: f \mapsto \sigma \circ f.
 \end{equation} One can easily check that $\text{NL}_\sigma$ is equivariant. 
 
-~~~<span style="color:red;">Warning:</span>~~~ Operation $\text{NL}_\sigma$ **does not** preserve the bandwith of the data. In fact, $\text{NL}_\sigma(f)$ can have infinite bandwidth regardless of the bandwith of $f$. Therefore, computing the Fourier coefficients with \eqref{sampling} after a non-linearity operation will introduce errors (See [Equivariance error analysis](../post1/#equivariant_error_analysis)).
+~~~<span style="color:red;">Warning:</span>~~~ Operation $\text{NL}_\sigma$ **does not** preserve the bandwith of the data. In fact, $\text{NL}_\sigma(f)$ can have infinite bandwidth regardless of the bandwith of $f$. Therefore, computing the Fourier coefficients with \eqref{sampling} after a non-linearity operation will introduce errors (See [equivariance error analysis](../post1/#equivariant_error_analysis)).
 
 ---
 ## Spectral pooling
