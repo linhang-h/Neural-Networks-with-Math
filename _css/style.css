@@ -120,12 +120,14 @@ body {
   padding: 0.1em 0.2em;
   border-radius: 2px;
   font-size: 14px;
+  font-weight:600 ;
   }
   
   pre .hljs {
   font-size: 14px;
   line-height: 1.35em;
   border-radius: 10px;
+  background-color: #f1edfd;
   }
   
   .hljs-meta { font-weight: bold;}
