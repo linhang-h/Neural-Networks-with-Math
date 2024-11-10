@@ -1,6 +1,6 @@
 # Equivariant Neural Networks
 
-In this post, we will talk about the mathematical concept of equivariants and its use in building neural networks that respect symmetry.
+In this post, we will talk about the mathematical concept of equivariance and its use in building neural networks that respect symmetry.
 
 
 \toc
