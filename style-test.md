@@ -35,3 +35,9 @@ print(a)
 $x=5$
 
 $$\int_0^1 x = \frac{1}{2}$$
+
+@@colbox-blue
+    Colbox-blue
+@@
+
+\block{Title}{Content}

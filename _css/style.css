@@ -211,7 +211,8 @@ body {
   /* Avoid clickable elements being too close together. */
   margin: 0.6rem 0;
   }
-  
+
+
   /* ==================================================================
     BOXES
   ================================================================== */
@@ -306,3 +307,42 @@ body {
   .copyright a:visited { text-decoration: none; }
   .copyright a:hover { text-decoration: none; }
   .copyright a:active { text-decoration: none; }
+
+  /* ==================================================================
+    Custom
+  ================================================================== */
+  .blog-posts li{
+    color: #7c4c80;
+  }
+
+  .blog-posts a{
+    font-weight: bold;
+    font-size: 120%;
+    color: #5644bd;
+  }
+
+  .note {
+    margin-top: 1.5em;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(243, 226, 245);
+    border-radius: 5px;
+    margin-bottom: 1em;
+  }
+
+  .note .title {
+    font-weight: bold;
+    font-size: 120%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-left: 7px;
+    padding-top: 2px;
+    color: white;
+    background: rgb(183, 115, 192);
+  }
+
+  .note .content {
+    padding: 10px;
+    padding-left: 12px;
+  }

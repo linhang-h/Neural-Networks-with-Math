@@ -87,13 +87,15 @@ In practice, the nonlinear layer is done by the standard pointwise operation: \b
     \text{NL}_\sigma: f \mapsto \sigma \circ f.
 \end{equation} One can easily check that $\text{NL}_\sigma$ is equivariant. 
 
-~~~<span style="color:red;">Warning:</span>~~~ Operation $\text{NL}_\sigma$ **does not** preserve the bandwith of the data. In fact, $\text{NL}_\sigma(f)$ can have infinite bandwidth regardless of the bandwith of $f$. Therefore, computing the Fourier coefficients with \eqref{sampling} after a non-linearity operation will introduce errors (See [equivariance error analysis](../post1/#equivariant_error_analysis)).
+\block{Warning!}{Operation $\text{NL}_\sigma$ **does not** preserve the bandwith of the data. In fact, $\text{NL}_\sigma(f)$ can have infinite bandwidth regardless of the bandwith of $f$. Therefore, computing the Fourier coefficients with \eqref{sampling} after a non-linearity operation will introduce errors (See [equivariance error analysis](../post1/#equivariant_error_analysis)).}
 
 ---
+
 ## Spectral pooling
 Here we introduced a pooling layer that acts as a [low-pass filter](https://en.wikipedia.org/wiki/Low-pass_filter) with cutoff frequency $b/2$. In practice, we can simply set $f^m_\ell$ to be zero for all $b/2<\ell < b$. 
 
 ---
+
 ## Invariant descriptor
 In tasks such as image classification, the output is invariant to $SO(3)$ actions (equivalently, $SO(3)$ acts trivially on the output space). Therefore, we would like the output to be $SO(3)$-**invariant**. One way to achieve this is to use the following operation to produce an output vector: \begin{align}
     \text{Des}: f &\mapsto (||\mathbf{f}^0||,\dots,||\mathbf{f}^{b-1}||)\\
@@ -101,6 +103,7 @@ In tasks such as image classification, the output is invariant to $SO(3)$ action
 \end{align} The fact that each $\mathbf{f}^\ell$ is $SO(3)$-invariant follow from that the action $SO(3)$ on $\mathbf{Y}^\ell := \text{span}\{Y^m_\ell| |m|\leq \ell\}$ is representable by [Wigner D-matrices](https://en.wikipedia.org/wiki/Wigner_D-matrix), which are unitary.
 
 ---
+
 ## Equivariant error analysis
 
 The non-linearity layers are the only ones that introduce equivariant errors. To see this, we define the distribution \begin{equation}
