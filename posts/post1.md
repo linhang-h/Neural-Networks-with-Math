@@ -42,6 +42,11 @@ One can check that the operation \begin{equation}
 \end{equation} is $G$-equivariant.
 
 ---
+
+## Group convolution & fourier transform
+
+---
+
 ##  $SO(3)$-equivariance with spherical harmonics
 
 Now let's look at an implementation of $SO(3)$-equivariant network from [this paper][paper1]. Here, we consider spherical functions in $L^2(\mathbb{S}^2)$ as data. Under the integrability assumption, we can perform the **spherical Fourier transform (SFT)** \begin{align}
