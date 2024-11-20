@@ -5,7 +5,6 @@ In this post, we will talk about the mathematical concept of equivariance and it
 
 \toc
 
----
 
 ## What is equivariance
 
@@ -15,7 +14,6 @@ Given a group $G$ that acts on sets $E$ and $F$, a function $f: E \to F$ is $G$-
 
 Basically, function $f$ is $G$-equivariant when it preserves the symmetry imposed by the group $G$.
 
----
 
 ## Why do we need equivariant neural networks
 
@@ -23,7 +21,6 @@ The task of the feedforward neural networks is to transform the input data into 
 
 An example one can think of is that of image classification. When classifying images, the labels we give to the images are usually rotationally invariant. Hence, if the classifier neural network is equivariant to rotation, one can potentially save significant amount of computational power and make the model more generalizable.
 
----
 
 ## Equivariant kernels for CNN
 
@@ -41,11 +38,9 @@ One can check that the operation \begin{equation}
     \text{Cov}_{h,\eta}: f\mapsto f*_{G,\eta}h
 \end{equation} is $G$-equivariant.
 
----
 
 ## Group convolution & fourier transform
 
----
 
 ##  $SO(3)$-equivariance with spherical harmonics
 
@@ -62,7 +57,7 @@ using the fact that the Haar measure $\mu$ is essentially a multiple of the unif
 
 The key observation here is that the information we need for the kernel $h$ is only the 0-th order coefficients $\{h^{\ell}_0\}_{\ell=0}^\infty$.
 
----
+
 ## Implementation of convolution
 Suppose that $f$ has **bandwidth** $b>0$. That is, $f^m_\ell = 0$ for all $\ell\geq b$. Then by \eqref{prod}, $f*h$ will also have bandwidth $b$ and thus it is suffice to keep track of $(h^0_0,\cdots,h^{b-1}_0)$.
 
@@ -86,7 +81,7 @@ Due to finite bandwidth, we can also calculate the Fourier coefficients based on
     x_{j,k}&= (\cos(j\pi/b)\sin(k\pi/b),\sin(j\pi/b)\cos(k\pi/b),\cos(j\pi/b)),
 \end{align} where $w^{(b)}_j$ are predetermined weights on $\{x_{j,k}\}$. Hence, to implement $\text{Cov}_{h,\eta}$, we can first find coefficients $f^m_\ell$ with \eqref{sampling}. Then we find apply the pointwise product by \eqref{prod} to get the coefficients for $\text{Cov}_{h,\eta}(f)$.
 
----
+
 ## Non-linearity
 In practice, the nonlinear layer is done by the standard pointwise operation: \begin{equation}
     \text{NL}_\sigma: f \mapsto \sigma \circ f.
@@ -94,12 +89,10 @@ In practice, the nonlinear layer is done by the standard pointwise operation: \b
 
 \block{Warning!}{Operation $\text{NL}_\sigma$ **does not** preserve the bandwith of the data. In fact, $\text{NL}_\sigma(f)$ can have infinite bandwidth regardless of the bandwith of $f$. Therefore, computing the Fourier coefficients with \eqref{sampling} after a non-linearity operation will introduce errors (See [equivariance error analysis](../post1/#equivariant_error_analysis)).}
 
----
 
 ## Spectral pooling
 Here we introduced a pooling layer that acts as a [low-pass filter](https://en.wikipedia.org/wiki/Low-pass_filter) with cutoff frequency $b/2$. In practice, we can simply set $f^m_\ell$ to be zero for all $b/2<\ell < b$. 
 
----
 
 ## Invariant descriptor
 In tasks such as image classification, the output is invariant to $SO(3)$ actions (equivalently, $SO(3)$ acts trivially on the output space). Therefore, we would like the output to be $SO(3)$-**invariant**. One way to achieve this is to use the following operation to produce an output vector: \begin{align}
@@ -107,7 +100,6 @@ In tasks such as image classification, the output is invariant to $SO(3)$ action
     \mathbf{f}^\ell &= (f^{-\ell}_\ell,f^{-\ell+1}_\ell,\dots, f^\ell_\ell).
 \end{align} The fact that each $\mathbf{f}^\ell$ is $SO(3)$-invariant follow from that the action $SO(3)$ on $\mathbf{Y}^\ell := \text{span}\{Y^m_\ell| |m|\leq \ell\}$ is representable by [Wigner D-matrices](https://en.wikipedia.org/wiki/Wigner_D-matrix), which are unitary.
 
----
 
 ## Equivariant error analysis
 

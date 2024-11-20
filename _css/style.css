@@ -1,6 +1,9 @@
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
+  html {
+    scroll-padding-top: 100px;
+  }
 
   body {
     padding-top: 6rem;
@@ -362,7 +365,7 @@
     width: 100%;
     padding: 15px;
     transition: all 0.4s ease;
-    background: #d6c3e1;
+    background: #e5d2f0;
   }
   nav.sticky{
     padding: 15px 20px;
@@ -381,9 +384,25 @@
   }
   nav .logo a{
     font-weight: bolder;
-    font-size: 35px;
+    font-size: 30px;
     color: #705183;
+    transition: all 0.3s ease;
   }
+
+  @media (max-width: 600px){
+    nav .nav-content{
+      justify-content: left;
+    }
+
+    nav .logo a{
+      font-size: 20px;
+    }
+
+    nav .nav-links li a{
+      font-size: 10px;
+    }
+  }
+
   nav.sticky .logo a{
     color: #fff;
   }

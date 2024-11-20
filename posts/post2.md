@@ -5,14 +5,12 @@ In this post, we will give a brief introduction to diffusion models and talk abo
 
 \toc
 
----
 
 ## What are diffusion models
 Diffusion models are a family of generative models. Broadly, these are the models that learn the data distribution by injecting noise via a diffusion process and then generate new samples by denoising. 
 
 Diffusion models currently achieve the state-of-the-art performance in image generation and have also seen applications in other tasks.
 
----
 
 ## Ornstein-Uhlenbeck processes
 The diffusion processes the models usually use are [Ornstein–Uhlenbeck processes](https://en.wikipedia.org/wiki/Ornstein%E2%80%93Uhlenbeck_process), which are defined using SDE\begin{equation}\label{eq1}
@@ -28,14 +26,12 @@ Fix an end time $T>0$ and set $\widetilde X_t = X_{T-t}$ be the time-reversal pr
     d\widetilde{X}_t = \left[-\frac{g(T-t)^2}{2\sigma^2}(\mu-\widetilde{X}_t) + g(T-t)^2\nabla_xp_{T-t}(\widetilde{X}_t)\right]dt + g(T-t)dB'_t,
 \end{equation} where $p_t$ is the density of $X_t$ and $B'_t$ is a different Brownian motion.
 
----
 
 ## Noise injection & denoising
 The framework of a diffusion model generally goes as follows: we first fix a sequence of time $0=t_0< t_1 <\dots< t_n = T$, $g(t)$, $\mu$ and $\sigma$. Then given each  point $x_0\in\R^d$ sampled from the data distribution $p$, we can then add Gaussian noise to the data iteratively by sampling $x_i := X_{t_i}$, where $X_t$ follows SDE \eqref{eq1} starting at $x_0$. Since the transition probability is just Gaussian, we can sample $(X_n)$ efficiently. 
 
 Assuming $T$ is large enough that $x_n$ is approximately distributed according to the stationary Gaussian distribtion. Then the objective will be learning the the information of $p_t$ so that we can approximate the time-reversal process \eqref{eq2} with initial data $\widetilde{X}_0 \sim N(\mu,\sigma^2)$.
 
----
 
 ## Score matching
 
@@ -45,14 +41,12 @@ One major advantage of this idea is that we do not need to normalize our estimat
 
 For diffusion models, our training objective will be given by \begin{equation}\label{eq3}
     \sum_{i=1}^n\lambda_i\mathbb{E}\left[\left\Vert n(\theta;x_i) - \nabla_xp_{t_i}(x_i)\right\Vert^2\right],
-\end{equation} where $(\lambda_i)$ are positive weights determined by on the choices of $\sigma$ and $g(t)$.
+\end{equation} where $(\lambda_i)$ are positive weights determined by on the choices of $\sigma$ and $g(t).$
 
----
 
 ## Trainable objective
 
 Since $\nabla_xp_t$ is not tractable, we need to convert \eqref{eq3} to a trainable objective. To do this, we note that 
 
----
 
 ## Conditioning
