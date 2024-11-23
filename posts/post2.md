@@ -1,3 +1,11 @@
++++
+title = "Diffusion Models and Ornstein-Uhlenbeck Processes"
+
+excerpt = "Exploring diffusion models with a closer look at the underlying random processes"
+
+image = "/assets/images/diffusion.webp"
++++
+
 # Diffusion Models and Ornstein-Uhlenbeck Processes
 
 In this post, we will give a brief introduction to diffusion models and talk about their connections to Ornstein-Uhlenbeck processes.

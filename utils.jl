@@ -68,21 +68,30 @@ Souce: <https://github.com/abhishalya/abhishalya.github.io>.
     io = IOBuffer()
 
     write(io, """<div class="franklin-content">""")
-    write(io, """<ul class="blog-posts">""")
+    write(io, """<div class="blog-posts">""")
     for (i, post) in enumerate(list)
         if post == "index.md"
             continue
         end
         ps = splitext(post)[1]
-        write(io, "<li>")
         url = "posts/$ps/"
         url_aux = "../posts/$ps/"
         surl = strip(url, '/')
         title = pagevar(surl, "title")
-        write(io, """<p><a href="$url_aux">$title</a></p>""")
-        write(io, "</li>")
+        excerpt = pagevar(surl, "excerpt")
+        image = pagevar(surl, "image")
+        write(io, """
+        <div class="blog-card">
+            <img src=$image alt=$title class="blog-image">
+            <div class="blog-content">
+                <h3 class="blog-title">$title</h3>
+                <p class="blog-excerpt">$excerpt</p>
+                <a href=$url_aux class="read-more">Read More →</a>
+            </div>
+        </div>
+        """)
     end
     write(io, "</div>")
-    write(io, "</ul>")
+    write(io, "</div>")
     return String(take!(io))
 end
