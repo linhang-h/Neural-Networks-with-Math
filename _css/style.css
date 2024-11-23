@@ -459,20 +459,19 @@
   margin: 0%;
 }
 
-.card img{ 
-  margin-top: 0.5rem;
-  margin-right: 2rem;
-  margin-bottom: 1rem;
-  max-width: 100%;
-  display: block;
+.card img{
+  max-width: 110%;
   width: 150px;
   height: 150px;
+  object-fit: scale-down;
+  border-radius: 50%;
 }
 
 .card .links {
-  margin-left: 1.5rem;
+  justify-content: center;
   display: grid;
   gap: 0.3rem;
+  object-fit: scale-down;
 }
 
 .card .links button{
