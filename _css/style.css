@@ -5,11 +5,12 @@
     scroll-padding-top: 100px;
   }
 
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;700&display=swap');
   body {
     padding-top: 6rem;
     padding-bottom: 6rem;
     color: rgb(var(--bs-tertiary-color-rgb));
-    font-family: -apple-system, "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   
   /* CUSTOMIZE THE CAROUSEL
@@ -431,3 +432,75 @@
   nav.sticky .nav-links li a:hover{
     color: #0E2431;
   }
+
+.card {
+  display: flex;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, .5);
+  max-width: 500px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .15);
+  margin: 1rem;
+  overflow: hidden;
+  justify-content: space-between;
+}
+
+.card .left {
+  margin-top: auto;
+  margin-bottom: auto;
+  max-width: 40%;
+}
+.card .right {
+  max-width: 55%;
+  margin: auto;
+}
+
+.card .right h2{
+  margin: 0%;
+}
+
+.card img{ 
+  margin-top: 0.5rem;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+  max-width: 100%;
+  display: block;
+  width: 150px;
+  height: 150px;
+}
+
+.card .links {
+  margin-left: 1.5rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.card .links button{
+  font-family: sans-serif;
+  min-width: 120px;
+  padding: .5rem;
+  border: 1px solid #222;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .25s linear;
+}
+
+.links .github,
+.links .linkedin:hover {
+  background-color: #695767;
+  color: #FFF;
+}
+.links .linkedin,
+.links .github:hover{
+  background-color: transparent;
+  color: #695767;
+}
+
+.card .right h2{
+   font-size: 1.2rem;
+}
+
+.card .right p{
+  font-size: medium;
+}
