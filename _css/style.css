@@ -482,6 +482,21 @@
   transition: all .25s linear;
 }
 
+@media (max-width: 600px){
+  .card .left{
+    max-width: 50%;
+  }
+
+  .card .right{
+    max-width: 50%;
+  }
+  
+  .card img{
+    width: 100px;
+    height: 100px;
+  }
+}
+
 .links .github,
 .links .linkedin:hover {
   background-color: #695767;
