@@ -3,7 +3,7 @@ title = "Equivariant Neural Networks"
 
 excerpt = "How equivariance can be leveraged in neural network models"
 
-image = "/assets/images/equivariant.webp"
+image = "/assets/images/equivariant.png"
 +++
 
 # Equivariant Neural Networks

@@ -383,7 +383,7 @@
   }
 
   nav .logo :hover{
-    color: #fff;
+    color: #0E2431;
   }
   
   nav.sticky .logo :hover {
@@ -432,6 +432,7 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
   margin: 1rem;
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card .left {
@@ -481,6 +482,11 @@
   transition: all .25s linear;
 }
 
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
 @media (max-width:500px) {
   .card {
     display: grid;
@@ -519,6 +525,7 @@
 .blog-posts {
   display: grid;
   gap: 2rem;
+  max-width: 800px;
 }
 
 .blog-card {
