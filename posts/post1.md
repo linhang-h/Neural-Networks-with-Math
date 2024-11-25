@@ -79,9 +79,9 @@ class SO3_Conv(nn.Module):
         nn.init.kaiming_uniform_(self.h0)
 
     def forward(self, x):
-        x = SFT(x, self.bandwidth)
+        x = spherical_fourier_transform(x, self.bandwidth)
         weights = torch.sqrt(16*math.pi**3/torch.arange(2, 2*b+2, 2)) * self.h0
-        return ISFT(x*weights)
+        return inverse_spherical_fourier_transform(x*weights)
 ```
 
 Due to finite bandwidth, we can also calculate the Fourier coefficients based on only $(2b+1)^2$ equi-angular sample points on $\mathbb{S}^2$: \begin{align}\label{sampling}
