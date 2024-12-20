@@ -443,8 +443,10 @@
   gap: 10%;
 }
 .card .right {
+  display: grid;
   max-width: 55%;
   margin: auto;
+  overflow-y: scroll;
 }
 
 .card .right h2{
@@ -453,11 +455,13 @@
 
 .card .img{
   display: grid;
+  justify-content: center;
 }
 
 .card img{
   margin: auto;
   width: 80%;
+  min-width: 100px;
   object-fit: scale-down;
   border-radius: 50%;
   border: 2px solid #4e516d;
@@ -473,7 +477,7 @@
 
 .card .links button{
   font-family: sans-serif;
-  min-width: 120px;
+  min-width: 100px;
   padding: .5rem;
   border: 1px solid #222;
   border-radius: 5px;
@@ -497,10 +501,13 @@
     display: block;
     margin: auto;
   }
+
   .card .right {
     display: block;
     margin-bottom: 5%;
   }
+
+  .card 
 }
 
 .links .github,
