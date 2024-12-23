@@ -1,7 +1,7 @@
 +++
 title = "Introduction to G-CNNs"
 
-excerpt = "\textit{Group convolution is all you need.}"
+excerpt = "Group convolution is all you need."
 
 image = ""
 +++
