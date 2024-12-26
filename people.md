@@ -37,4 +37,34 @@ hascode = true
     </div>
 </div>
 
+
+<div class="card">
+    <div class="left">
+        <div class="img">
+            <img src="/assets/images/michael.jpeg">
+        </div>
+
+        <div class="links">
+            <a href="https://github.com/zengrf" target="_blank">
+            <button class="github">GitHub</button>
+            </a>
+            <a href="https://www.linkedin.com/in/zengrf/" target="_blank">
+            <button class="linkedin">LinkedIn</button>
+            </a>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="name">
+            <h2>Michael Zeng</h2>
+        </div>
+        <p class="intro">
+            
+        </p>
+        <h2> Research Interests</h2>
+        <p class="interests">
+            
+        </p>
+    </div>
+</div>
 ~~~

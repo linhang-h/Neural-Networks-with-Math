@@ -4,6 +4,8 @@ title = "Diffusion Models and Ornstein-Uhlenbeck Processes"
 excerpt = "Exploring diffusion models with a closer look at the underlying random processes"
 
 image = "/assets/images/diffusion.jpg"
+
+authors = "Linhang"
 +++
 
 # Diffusion Models and Ornstein-Uhlenbeck Processes

@@ -558,14 +558,20 @@
 }
 
 .blog-title {
-  font-size: 1.2em;
+  font-size: 1.5em;
   margin-bottom: 0.5em;
   color: #61355f;
 }
 
+.blog-author {
+  font-size: 1em;
+  margin-bottom: 0.5em;
+  color: #75676e;
+}
+
 .blog-excerpt {
   font-size: 0.95em;
-  color: #6c757d;
+  color: #4d545a;
   margin-bottom: 1em;
 }
 

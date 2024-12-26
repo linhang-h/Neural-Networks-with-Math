@@ -80,11 +80,13 @@ Souce: <https://github.com/abhishalya/abhishalya.github.io>.
         title = pagevar(surl, "title")
         excerpt = pagevar(surl, "excerpt")
         image = pagevar(surl, "image")
+        authors = pagevar(surl, "authors")
         write(io, """
         <div class="blog-card">
             <img src=$image alt=$title class="blog-image">
             <div class="blog-content">
-                <h3 class="blog-title">$title</h3>
+                <h4 class="blog-title">$title</h3>
+                <h4 class="blog-author">$authors</h4>
                 <p class="blog-excerpt">$excerpt</p>
                 <a href=$url_aux class="read-more">Read More →</a>
             </div>

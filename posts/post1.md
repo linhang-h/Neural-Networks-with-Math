@@ -4,6 +4,8 @@ title = "Equivariant Neural Networks"
 excerpt = "How equivariance can be leveraged in neural network models"
 
 image = "/assets/images/equivariant.png"
+
+authors = "Linhang"
 +++
 
 # Equivariant Neural Networks
@@ -45,10 +47,6 @@ To transform the data $G$-equivariantly, we set a kernel function $h: E\to \C$ w
 One can check that the operation \begin{equation}
     \text{Cov}_{h,\eta}: f\mapsto f*_{G,\eta}h
 \end{equation} is $G$-equivariant.
-
-
-## Group convolution & fourier transform
-
 
 ##  $SO(3)$-equivariance with spherical harmonics
 
@@ -110,7 +108,6 @@ In tasks such as image classification, the output is invariant to $SO(3)$ action
 
 
 ## Equivariant error analysis
-
 The non-linearity layers are the only ones that introduce equivariant errors. To see this, we define the distribution \begin{equation}
     s = \frac{\sqrt{2\pi}}{2b} \sum_{j=0}^{2b-1}\sum_{k=0}^{2b-1} w^{(b)}_j\delta_{x_{i,j}},
 \end{equation} given the equi-angular grid $\{x_{i,j}\}$.
