@@ -27,7 +27,16 @@ However, image data often come with additional structures, such as rotational or
 
 Say we want to build a network which recognizes the letter $G$. Regardless of where we position the $G$ in our input image, we want the feature map of the network to activate in the same way where it detects the $G$ somewhere in the image. This sort of *translation equivariance* is a defining feature of Convolutional Neural Networks (CNNs), and in fact what makes it so useful in pattern recognition tasks, especially in image and spatial data. 
 
-CNNs achieve translation invariance through the structure of their convolutional layers. Mathematically, a convolutional layer computes a feature map $f(x)$ as $(k * I)(x) = \int_{\mathbb{R}^n} k(u) I(x - u) \, du$, where $k(u)$ is the kernel (filter), and $I(x)$ is the input. If the input is translated by a vector $t \in \mathbb{R}^n$, such that $I'(x) = I(x - t)$, the resulting feature map shifts correspondingly: $f'(x) = (k * I')(x) = f(x - t)$. This demonstrates that the convolution operation is *compatible with translational symmetries*. 
+CNNs achieve translation invariance through the structure of their convolutional layers. Mathematically, a convolutional layer takes in a signal $f:\mathbb{R}^n\to \mathbb{R}$ and computes a feature map $\hat{f}(x)$ as $$\hat{f}(x):=(\kappa * f)(x) = \int_{\mathbb{R}^n} \kappa(y) f(x - y) \, dy$$, where $\kappa$ is the convolution *kernel* (aka. filter). If the signal $f$ is translated by a vector $t \in \mathbb{R}^n$, say $f^\prime(x) = f(x - t)$, then the resulting feature map shifts correspondingly: $$\hat{f}^\prime(x) = (\kappa * f')(x) = \int_{\mathbb{R}^n}\kappa(y)f(x-t-y)dy = \hat{f}(x-t).$$ This can be organized into a commutative diagram: 
+$$\begin{tikzcd}
+	f & {\hat{f}} \\
+	{f^\prime} & {\hat{f}^\prime}
+	\arrow["{\tiny{\text{ convolution }}}"{marking, allow upside down}, from=1-1, to=1-2]
+	\arrow["{\tiny{\text{ translation }}}"{marking, allow upside down}, from=1-1, to=2-1]
+	\arrow["{\tiny{\text{ translation }}}"{marking, allow upside down}, from=1-2, to=2-2]
+	\arrow["{\tiny{\text{ convolution }}}"{marking, allow upside down}, from=2-1, to=2-2]
+\end{tikzcd}$$
+In plain words, *convolving first and then translating results the same as translating first and then convolving*. This demonstrates that the convolution operation is *compatible with translational symmetries* and is exactly what makes CNNs so good with acoustic and visual signals. 
 
 Our physical world is brimming with symmetries -- from the discrete polytopal symmetries of a virus to the rotational symmetries of the surface of a planet. It is an inevitable result that the data inputted in neural networks 
 
