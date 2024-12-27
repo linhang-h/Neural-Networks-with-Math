@@ -1,3 +1,40 @@
+# FranklinTheorems package for amsthms
+# Includes the Package, bringing the lx_functions into scope
+using FranklinTheorems
+# Includes the custom markdown files, bringing the `\newcommand` and `\newenvironment` definitions into scope.
+Franklin.include_external_config(FranklinTheorems.config_path()) 
+
+# TikzPictures package
+const isAppleARM = Sys.isapple() && Sys.ARCH === :aarch64
+if !isAppleARM
+    using TikzPictures
+end
+
+# custom environment for tikzcd
+if !isAppleARM
+
+    # so we don't have to install LaTeX on CI
+    tikzUseTectonic(true)
+
+    function env_tikzcd(e, _)
+        content = strip(Franklin.content(e))
+        name = strip(Franklin.content(e.braces[1]))
+        # save SVG at __site/assets/[path/to/file]/$name.svg
+        rpath = joinpath("assets", splitext(Franklin.locvar(:fd_rpath))[1], "$name.svg")
+        outpath = joinpath(Franklin.path(:site), rpath)
+        # if the directory doesn't exist, create it
+        outdir = dirname(outpath)
+        isdir(outdir) || mkpath(outdir)
+        # save the file and show it
+        save(SVG(outpath), TikzPicture(content; environment="tikzcd", preamble="\\usepackage{tikz-cd}"))
+        return "\\fig{/$(Franklin.unixify(rpath))}"
+    end
+    
+else
+    env_tikzcd(_, _) = ""
+end
+
+
 function hfun_bar(vname)
     val = Meta.parse(vname[1])
     return round(sqrt(val), digits=2)

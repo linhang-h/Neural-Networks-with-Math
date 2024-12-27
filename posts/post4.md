@@ -1,3 +1,5 @@
+\enabletheorems
+
 +++
 title = "Introduction to G-CNNs"
 
@@ -7,6 +9,7 @@ image = ""
 
 authors = "Michael"
 +++
+
 
 # Group Equivariant Neural Networks
 
@@ -63,6 +66,15 @@ $$\begin{tikzcd}
 \end{tikzcd}$$
 
 
+Fix the ground field to be $\k$, which for all practical purposes will be $\R$ or $\C$. (It will be awesome if you are able to come up with an application of $G$-CNNs with a more exotic ground field!)
+
+So say we are given a function $f$ on some space $X$ with a large group of symmetries $G$ –– so large that $X$ is in fact a *homogeneous space* of $G$. (This requirement is so that we have nice representation theory of $G$ on the space of functions over $X$.) A $G$-convolution then amounts to a choice of convolution kernel $\kappa: X \to \k$ 
+
+
+\block{Theorem}{Content of the theorem.}
+
+
+
 
 
 ## Representation Theory and Harmonic Analysis on Locally Compact Groups
@@ -79,3 +91,8 @@ $$\begin{tikzcd}
 
 
 ## $G$-GNN: Equivariant Graph Neural Networks
+
+
+
+
+\theoremscripts
