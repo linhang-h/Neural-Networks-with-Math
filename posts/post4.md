@@ -229,18 +229,46 @@ $$(\mathcal{K}_\rho f)(y) := \langle \rho(g_y)(\kappa),f\rangle_X = \int_X (g_y\
 
 Homework: verify that $G$-convolutions are indeed equivariant!
 
+\block{Example}{The usual convolution $$\kappa\ast f(x) = \int_{y\in\R^n}\kappa(x-y)f(y)dy$$ is in fact a group convolution where $G = \R^n$ itself. The term $-y$ in the argument of $\kappa$ is precisely the left-regular representation $\mathcal{L}_y$, where $y$ acts on $x\in R^n$ by its inverse $-y$!}
+
 The most important examples for us will be the left-regular representation $\mathcal{L}$ and convolutions going between $L_2(X)\to L_2(X)$, $L_2(X)\to L_2(G),$ and $L_2(G)\to L_2(X)$, as we will see in a moment. 
 
 We remember that our goal is to build convolutional layers that are equivariant under group translations. Namely, we would like to find equivariant transformations $\mathcal{K}: L_2(X)\to L_2(Y)$. This is the content of *Bekkers ICLR 2020, Thm. 1*: 
 
 \block{Theorem **(Group convolution is all you need!)**}{*Let $\mathcal{K}: L_2(X) \rightarrow L_2(Y)$ map between signals on homogeneous spaces of $G$.
-Let homogeneous space $Y \equiv G / H$ such that $H=\operatorname{Stab}_G\left(y_0\right)$ for some chosen origin $y_0 \in Y$ and let $g_y \in G$ such that $\forall_{y \in Y}: y=g_y y_0$. Fix the left-regular representations on $L_2(X)$ and $L_2(Y)$.* 
+Let homogeneous space $Y \cong G / H_2$ such that $H_2=\operatorname{Stab}_G\left(y_0\right)$ for some chosen origin $y_0 \in Y$ and let $g_y \in G$ such that $\forall_{y \in Y}: y=g_y y_0$. Fix the left-regular representations on $L_2(X)$ and $L_2(Y)$.* 
 
 *Then $\mathcal{K}$ is equivariant to group $G$ if and only if:*
-1. *It is a group convolution: $(\mathcal{K} f)(y)=\int_X \kappa\left(g_y^{-1} x\right) f(x) \mathrm{d}\mu(x)$.*
-2. *The kernel is $H$-invariant: $k(h^{-1} x)=k(x)$ for all $h\in H$.*}
+1. *It is a group convolution $\mathcal{K}[\kappa]$: $(\mathcal{K} f)(y)=\int_X \kappa\left(g_y^{-1} x\right) f(x) \mathrm{d}\mu(x)$.*
+2. *The kernel is $H_2$-invariant: $\kappa(h^{-1} x)=\kappa(x)$ for all $h\in H_2$.*}
+
+> TODO: add proof
+
+Furthermore, let the big group $G \cong X\rtimes H$ be a semidirect product and $X = Y \cong G/H$. Any such $H$-invariant kernel $\kappa$ comes from a **lift**  $\hat{\kappa}\in L_2(G)$ on the big group, without additional symmetry constraints.
+
+\block{Theorem}{Let $X,G$ be as above, and $\kappa\in L_2(X)$ be $H$-invariant: $\kappa(h^{-1} x)=\kappa(x)$ for all $h\in H$. Then, there is another kernel $\hat{\kappa}\in L_2(G)$ and convolutions $\mathcal{K}_{X\to G}: L_2(X)\to L_2(G)$, $\mathcal{K}_{G\to X}:L_2(G)\to L_2(X)$ such that $$\mathcal{K}[\kappa] = \mathcal{K}_{G\to X}\circ \mathcal{K}[\hat{\kappa}]\circ \mathcal{K}_{X\to G}.$$ Conversely, any kernel $\hat{\kappa}\in L_2(G)$ gives rise to an $H$-invariant kernel $\kappa$ via the same process.}
+
+$$\begin{tikzcd}
+	{L_2(G)} & {L_2(G)} \\
+	{L_2(X)} & {L_2(X)}
+	\arrow["{\hat{\kappa}}"{description}, from=1-1, to=1-2]
+	\arrow["{\text{ pooling }}"{description}, from=1-2, to=2-2]
+	\arrow["{\text{ lifting }}"{description}, from=2-1, to=1-1]
+	\arrow["\kappa"{description}, from=2-1, to=2-2]
+\end{tikzcd}$$
+
+The convolution $\mathcal{K}_{X\to G}$ is called the **lifting convolution**, which takes in a signal $f\in L_2(X)$ and outputs $$\hat{f} := \mathcal{K}_{X\to G}[\kappa](f) \in L_2(G), \quad \hat{f}(x, h) = \int_{y \in X}\kappa(h^{-1}(y-x))f(y)d\mu(y).$$
+The convolution $\mathcal{K}_{G\to X}$ is given by mean pooling over $H$. 
+
+This concludes the scaffolding of our $G$-CNN architecture. Since the group $G$ for all practical purposes will be a semidirect product of $\R^n$ with some of its symmetries, our convolutional layers can always be decomposed into a lifting convolution from $\R^n$ to $G$, followed by an unconstrained convolution on $G$, followed by a pooling convolution from $G$ back to $\R^n$. Since we used left-regular representations throughout, such an architecture is called a **regular** $G$-convolutional network.
 
 ## $G$-CNN: Regular v.s. Steerable Networks
+
+So we need to lift any signal $f$ on $X$ (usually $X = \R^n$) to a signal on the big group $G$, and this is done via the lifting convolution, where we lift the kernel $\kappa$ to $\hat{\kappa}\in L_2(G)$. This theoretically gives us true $G$-equivariance and replicates every signal to infinite precision. However, as with any other computer program, we need to choose a suitable discretization scheme. 
+
+TODO: add schematic of lifting convolution
+
+Schematically, we have infinitely many copies of $X$ in $G = X\rtimes H$ indexed by $H$, represented as the horizontal planes. These are the **sections** of $X$ in $G$. If we fix one such horizontal plane, then we see that there is a copy of $H$ sticking out vertically of each point on the plane. These copies of $H$ are called the **fibers** of the projection map $G\to X$. It is then a question of whether to discritize *horizontally* or *vertically*. 
 
 
 
