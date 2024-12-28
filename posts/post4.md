@@ -274,7 +274,7 @@ Schematically, we have infinitely many copies of $X$ in $G = X\rtimes H$ indexed
 
 ### Regular $G$-CNNs
 
-Say we want to slice a feature map on $G$ horizontally. Then, each horizontal slice is just a feature map on $X$ itself, and traversing vertically through different copies of $X$ amounts to transforming $X$ under the action of $H$. For example, if we slice up a kernel $\hat{\kappa}$ on $SE(n)$, then each slice $\kappa$ is just a kernel on $\R^n$ rotated from some original position by a rotation in $SO(n)$. Discretizing in this direction then amounts to choosing finitely many transformations in $H$ to approximate all of $H$. 
+Say we want to slice a feature map on $G$ by horizontal sections. Then, each horizontal slice is just a feature map on $X$ itself, and traversing vertically through different copies of $X$ amounts to transforming $X$ under the action of $H$. For example, if we slice up a kernel $\hat{\kappa}$ on $SE(n)$, then each slice $\kappa$ is just a kernel on $\R^n$ rotated from some original position by a rotation in $SO(n)$. Discretizing in this direction then amounts to choosing finitely many transformations in $H$ to approximate all of $H$. 
 
 \block{Example}{If $G = SE(2)$, then we may discretize $H = SO(2) \cong S^1$ by sampling at the $k^{\text{th}}$ roots of unity. This corresponds to choosing a kernel $\kappa \in L_2(\R^2)$ and rotating it $k$ times at angles $2\pi/k$.}
 
@@ -282,12 +282,35 @@ The regular $G$-CNN architecture loses true equivariance, because the kernel is 
 
 TODO: add schematic of local vs. global.
 
-### 
+### Steerable $G$-CNNs
 
+So let's try slicing feature maps the other way, by vertical fibers. Then, the feature map **remains on $X$** but its **values are signals** on the fibers $H$ over each point $x\in X$. (This is essentially the idea of currying.)
 
+Formally, given some signal $f\in L_2(G)$, we view it as a two-variable function $f(x,h)$ for $x\in X, h\in H$ and curry it: $$f_x: = f(x, -): H\to \R \quad \text{ for each fixed } x\in X.$$
+We have an "augmented" feature map $$F: X \to L_2(H), \quad x\mapsto f_x,$$
+and Peter-Weyl comes in handy: we may decompose each signal on $H$ as **a sum of the** $H$-**harmonics**, and discretizing this signal amounts to **choosing a finite bandwidth** (i.e. storing the Fourier coefficients in front of a finite number of frequencies. Since we are decomposing the fiber-wise signals into the steerable $H$-basis, this architecture is referred to as **steerable $G$-CNN**.
 
+\block{Example}{For $G = SE(2)$, we get a feature map on $\R^2$ of Fourier coefficients in front of the **cicular harmonics**. 
 
-## $G$-GNN: Equivariant Graph Neural Networks
+For $G = SE(3)$, we get a feature map on $\R^3$ of Fourier coefficients in front of the spherical harmonics. This is essentially the content of the paper [*Esteves ECCV 2018*](https://rdcu.be/bQuEQ).}
+
+TODO: add screenshots from the papers.
+
+The steerable architecture achieves **true equivariance**, but the choice of bandwidth limits the amount of precision that the feature map is able to approximate a signal. As with Taylor and Fourier series, we can always raise the precision by choosing a bigger bandwidth (allowing more basis harmonics in the finite sum approximation). 
+
+### $G$-Activation Layers
+
+Finally, there is the issue that activation layers do not yet have built-in equivariance. Again, there are two approaches to build equivariant activation layers. 
+
+First, we may simply choose equivariant activation functions. 
+
+\block{Example}{Even though the usual RELU function is not equivariant to rotations on the nose, we can postcompose it to the norm function. Since the norm is rotation-invariant, the resulting norm-RELU function becomes rotation-invariant. However, this comes at a cost of loosing all the directional information.}
+
+The more preferable choice is adhering to the steerable framework and apply activation functions **fiber-wise**. Since the signals on each fiber $H$ is steerable, it remains steerable even if we cut off a portion of if by say a RELU. This allows basically any familiar non-linear activation function but can create *sharp corners* which requires a bigger bandwidth to approximate.
+
+TODO: add steerable RELU picture
+
+## References
 
 
 
