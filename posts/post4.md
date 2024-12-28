@@ -222,10 +222,10 @@ The orthogonal basis for $L_2(X)$ obtained via Peter-Weyl is often referred to a
 
 ### $G$-Convolutions and Architecture of $G$-CNNs
 
-Say $X \cong G/H$ for a normal subgroup $H$, with *Haar measure* $d\mu$. We fix a representation $\rho$ of $G$ on $L_2(X)$ with inner product $\langle -,-\rangle_X$. For a point $x \in X$, pick a coset representative $g_x\in G$ such that $x = [g_xH]$. Then, the **$G$-convolution** $\mathcal{K}_\rho: L_2(X) \to L_2(X)$ is defined as $$(\mathcal{K}_\rhof)(x) := \langle \rho(g_x)(\kappa),f\rangle_X = \int_X (g_x\cdot \kappa)fd\mu.$$
+Say $X \cong G/H$ for a normal subgroup $H$, with *Haar measure* $d\mu$. We fix a representation $\rho$ of $G$ on $L_2(X)$ with inner product $\langle -,-\rangle_X$. For a point $x \in X$, pick a coset representative $g_x\in G$ such that $x = [g_xH]$. Then, the **$G$-convolution** $\mathcal{K}_\rho: L_2(X) \to L_2(X)$ is defined as $$(\mathcal{K}_\rho f)(x) := \langle \rho(g_x)(\kappa),f\rangle_X = \int_X (g_x\cdot \kappa)fd\mu.$$
 
 More generally, if $X\cong G/H_1$ and $Y \cong G/H_2$ are homogeneous spaces of $G$, then for any $y\in Y$, pick coset representative $g_y$ such that $y = [g_yH_2]$. The $G$-convolution $\mathcal{K}: L_2(X)\to L_2(Y)$ is then 
-$$(\mathcal{K}_\rhof)(y) := \langle \rho(g_y)(\kappa),f\rangle_X = \int_X (g_y\cdot \kappa)fd\mu.$$
+$$(\mathcal{K}_\rho f)(y) := \langle \rho(g_y)(\kappa),f\rangle_X = \int_X (g_y\cdot \kappa)fd\mu.$$
 
 Homework: verify that $G$-convolutions are indeed equivariant!
 
