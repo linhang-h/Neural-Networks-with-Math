@@ -151,7 +151,9 @@ TODO:picture of scale translation
 A **Lie group** is a topological group endowed with the structure of a smooth manifold. A transitive group action is an action with a single orbit. A **homogeneous space** for a Lie group $G$ is then a smooth manifold $X$ with a transitive $G$-action. 
 
 Say we have a $G$-action on $X$ with just a single orbit. Then, for any point $x$ in the single orbit $X$, the orbit-stabilizer theorem says that $$X = G/\mathrm{Stab}_x$$
-as a set, which can be upgraded to a diffeomorphism of smooth manifolds. Therefore, $G$-homogeneous spaces are in 1-to-1 correspondence to quotients $G/H$ where $H$ is a normal subgroup. The stabilizer subgroup $\mathrm{Stab}_x$ is often called the **isotropy subgroup** of a point $x$, which consists of all transformations in $G$ that fix $x$. 
+as a set, which can be upgraded to a diffeomorphism of smooth manifolds. Therefore, $G$-homogeneous spaces are in 1-to-1 correspondence to quotients $G/H$ where $H$ is a normal subgroup. Elements in $X\cong G/H$ are then **cosets** of $H$. The stabilizer subgroup $\mathrm{Stab}_x$ is often called the **isotropy subgroup** of a point $x$, which consists of all transformations in $G$ that fix $x$. 
+
+\block{Examples}{Any Lie group $G$ is a homogeneous space over itself with trivial isotropy. $$G\cong G/\{1\}.$$}
 
 \block{Examples}{The orthonogal group $O(n+1,\R)$ acts on the $n$-sphere $S^n \subseteq \R^{n+1}$ with isotropy $O(n,\R)$. Therefore, $$S^n \cong O(n+1,\R)/O(n,\R).$$
 There is a similar story for the complex $(2n-1)$-sphere in $\C^n$.}
@@ -168,6 +170,8 @@ There is a similar story for the complex Grassmannian $Gr_\C(k,n)$ and for more 
 Integration on a manifold is a pairing between formal sums of $k$-dimensional submanifolds and differential $k$-forms, which returns a scalar in $\k = \R or \C$. 
 $$\text{ integral } = \int_{\text{ sum of submanifolds } C} \text{ differential form }d\mu.$$
 For integration over groups (and similarly homogeneous spaces), we want the number we get to be invariant if we translate our submanifold by any group element $g$. This leads to the notion of a **left-invariant measure** (resp. right-invariant if the group acts on the right).
+
+#### Haar measure
 
 Given a $G$-space $X$, a Borel measure $\mu$ is left-invariant if for any subset $C\subseteq X$ and any group element $g$, we have $\mu(g\cdot C) = \mu(C)$. Such a measure on $G$ itself is called *the* **Haar measure**, whose existence and uniqueness are always guaranteed: 
 
@@ -186,10 +190,12 @@ This turns out to be a brilliant mnemonic for the definition of the Gamma functi
 
 Left and right-invariant measures agree for **unimodular groups**, which includes all of compact, discrete,abelian, connected and semisimple, connected and reductive, connected and nilpotent. [BerkeleyNotes](https://math.berkeley.edu/~cjdowd/haar1.pdf) offers a very nice exposition.}
 
+#### The Peter-Weyl Theorem and Harmonics
+
 Now, for a homogeneous space $X \cong G/H$, existence of the Haar measure is a bit more tricky, since it depends on something called the *modular function* of the Lie group $G$ and its restriction to $H$. Fortunately, all $X$ in our consideration admits a unique Haar measure, say $d\mu$, which we may use to define an (Hermitian) inner product on the space of $\R$ (resp. $\C$)-valued functions by setting $$\langle f, g\rangle_X:= \int_X fgd\mu.$$
 (The $g$ needs conjugation for the case $\k = \C$.) With that comes a notion of the $L_2$ norm and the space $L_2(X)$, i.e. the **Hilbert space of square integrable functions**. 
 
-Since $G$ acts on $X$, this action naturally extends to an action on $L_2(X)$ where $g$ acts by transforming the domain of $f\in L_2(X)$. More precisely, we have the **left-regular representation** of $G$ on $L_2(X)$, where $g$ operates by $$g\cdot f(x) := f(g^{-1}x).$$
+Since $G$ acts on $X$, this action naturally extends to an action on $L_2(X)$ where $g$ acts by transforming the domain of $f\in L_2(X)$. More precisely, we have the **left-regular representation** $\mathcal{L}$ of $G$ on $L_2(X)$, where $g$ operates by $$g\cdot f(x) := f(g^{-1}x).$$
 We take put inverse of $g$ so as to make this a *left*-action. Verify this on your own!
 
 The left-regular representation is particularly important because it is *faithful* (respects all symmetries from $G$) and *unitary* (respects the inner product). In fact, it is a fundamental result in harnomic analysis that such unitary representations on spaces of functions completely decomposes into spaces of *harmonics*. This is the famous **Peter-Weyl Theorem**, aka. Maschke's theorem for harmonic analysts.
@@ -206,7 +212,33 @@ The circular harmonis are called **steerable** in the deep learning literature b
 
 TODO: add circular harmonics picture.
 
-\block{Examples}{Let $X = S^2 \cong SO(3)/SO(2)$ be the $2$-sphere. Then, we have the decomposition $$L_2(S^2) = \bigoplus_{l \in \mathbb{N}}\bigoplus_{m = -l}^l \CC\cdot Y_l^m$$ where $$Y_l^m(\theta, \varphi) = TODO$$ are the famous **spherical harmonics.**}
+\block{Examples}{Let $X = S^2 \cong SO(3)/SO(2)$ be the $2$-sphere, with affine coordinates $(\theta, \varphi)$. $S^2$ has Haar measure $\sin(\theta)d\varphi d\theta$. Then, we have the decomposition $$L_2(S^2) = \bigoplus_{l \in \mathbb{N}}\bigoplus_{m = -l}^l \C\cdot Y_l^m$$ where $$Y_l^m(\theta, \varphi) = (-1)^m \sqrt{\frac{(2 \ell+1)}{4 \pi} \frac{(\ell-m)!}{(\ell+m)!}} P_{\ell}^m(\cos \theta) e^{i m \varphi}$$ are the famous **spherical harmonics.** The $P_l^m$ are the Legendre polynomials. Every signal $f\in L_2(S^2)$ is then a sum of spherical harmonics, and the left-regular representation decomposes into rotating each basis harmonic in 3-space.}
+
+In fact, the spherical harmonics correspond to the famous electron orbits. 
+
+TODO: add spherical harmonics electron orbit picture.
+
+The orthogonal basis for $L_2(X)$ obtained via Peter-Weyl is often referred to as the **steerable basis** in the literature. 
+
+### $G$-Convolutions and Architecture of $G$-CNNs
+
+Say $X \cong G/H$ for a normal subgroup $H$, with *Haar measure* $d\mu$. We fix a representation $\rho$ of $G$ on $L_2(X)$ with inner product $\langle -,-\rangle_X$. For a point $x \in X$, pick a coset representative $g_x\in G$ such that $x = [g_xH]$. Then, the **$G$-convolution** $\mathcal{K}_\rho: L_2(X) \to L_2(X)$ is defined as $$(\mathcal{K}_\rhof)(x) := \langle \rho(g_x)(\kappa),f\rangle_X = \int_X (g_x\cdot \kappa)fd\mu.$$
+
+More generally, if $X\cong G/H_1$ and $Y \cong G/H_2$ are homogeneous spaces of $G$, then for any $y\in Y$, pick coset representative $g_y$ such that $y = [g_yH_2]$. The $G$-convolution $\mathcal{K}: L_2(X)\to L_2(Y)$ is then 
+$$(\mathcal{K}_\rhof)(y) := \langle \rho(g_y)(\kappa),f\rangle_X = \int_X (g_y\cdot \kappa)fd\mu.$$
+
+Homework: verify that $G$-convolutions are indeed equivariant!
+
+The most important examples for us will be the left-regular representation $\mathcal{L}$ and convolutions going between $L_2(X)\to L_2(X)$, $L_2(X)\to L_2(G),$ and $L_2(G)\to L_2(X)$, as we will see in a moment. 
+
+We remember that our goal is to build convolutional layers that are equivariant under group translations. Namely, we would like to find equivariant transformations $\mathcal{K}: L_2(X)\to L_2(Y)$. This is the content of [Bekkers ICLR 2020, Thm. 1]: 
+
+\block{Theorem **(Group convolution is all you need!)**}{Let $\mathcal{K}: L_2(X) \rightarrow L_2(Y)$ map between signals on homogeneous spaces of $G$.
+Let homogeneous space $Y \equiv G / H$ such that $H=\operatorname{Stab}_G\left(y_0\right)$ for some chosen origin $y_0 \in Y$ and let $g_y \in G$ such that $\forall_{y \in Y}: y=g_y y_0$. Fix the left-regular representations on $L_2(X)$ and $L_2(Y)$. 
+
+Then $\mathcal{K}$ is equivariant to group $G$ if and only if:
+1. It is a group convolution: $(\mathcal{K} f)(y)=\int_X \kappa\left(g_y^{-1} x\right) f(x) \mathrm{d}\mu(x)$.
+2. The kernel is $H$-invariant: $\quad \forall_{h \in H}: k(h^{-1} x)=k(x)$.}
 
 ## $G$-CNN: Regular v.s. Steerable Networks
 
