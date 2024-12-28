@@ -312,5 +312,14 @@ TODO: add steerable RELU picture
 
 ## References
 
+*Prof.* [Jean Gallier](https://www.cis.upenn.edu/~jean/home.html) at Penn has published a number of amazing volumes on all of the representation theory, differential geometry, and harmonic analysis useful for the above discussions. The ones particularly relevant are: 
+- *Aspects of Representation Theory and Noncommutative Harmonic Analysis*
+- *Geometric Methods and Applications For Computer Science and Engineering*
+- *Differential Geometry and Lie Groups: A Second Course*
 
+The author of this blog owes immense gratitude to *Prof.* Gallier for introducing him to this subject during his undergraduate and offering incredibly helpful advice. 
+
+[Chen Cai](https://chen-cai-osu.github.io/) has created a great repository of papers on equivariant networks: (Awesome Equivariant Network)[https://github.com/Chen-Cai-OSU/awesome-equivariant-network]. 
+
+See (Geometric Deep Learning)[https://geometricdeeplearning.com/] for a comprehensive treatment of geometric methods used in deep learning.
 
