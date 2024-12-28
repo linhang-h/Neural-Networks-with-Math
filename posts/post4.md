@@ -95,7 +95,8 @@ Given such, the general architecture of a $G$-CNN is as follows:
 5. Repeat steps 3 and 4. 
 6. Project down to $X$ by max pooling over $H$. 
 
-TODO: add image G-CNN architecture.png
+!(GCNN)[/_assets/images/G-CNN-architecture.png]
+
 
 In the next sections, we are going to build up the necessary representation theory and investigate how such $G$-convolution layers can be built computationally. 
 
