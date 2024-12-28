@@ -95,8 +95,11 @@ Given such, the general architecture of a $G$-CNN is as follows:
 5. Repeat steps 3 and 4. 
 6. Project down to $X$ by max pooling over $H$. 
 
-!(GCNN)[/_assets/images/G-CNN-architecture.png]
+![GCNN](/_assets/images/G-CNN-architecture.png)
 
+@@small-img
+\fig{/_assets/images/G-CNN-architecture.png}
+@@
 
 In the next sections, we are going to build up the necessary representation theory and investigate how such $G$-convolution layers can be built computationally. 
 
@@ -320,7 +323,7 @@ TODO: add steerable RELU picture
 
 The author of this blog owes immense gratitude to *Prof.* Gallier for introducing him to this subject during his undergraduate and offering incredibly helpful advice. 
 
-[Chen Cai](https://chen-cai-osu.github.io/) has created a great repository of papers on equivariant networks: (Awesome Equivariant Network)[https://github.com/Chen-Cai-OSU/awesome-equivariant-network]. 
+[Chen Cai](https://chen-cai-osu.github.io/) has created a great repository of papers on equivariant networks: [Awesome Equivariant Network](https://github.com/Chen-Cai-OSU/awesome-equivariant-network). 
 
-See (Geometric Deep Learning)[https://geometricdeeplearning.com/] for a comprehensive treatment of geometric methods used in deep learning.
+See [Geometric Deep Learning](https://geometricdeeplearning.com/) for a comprehensive treatment of geometric methods used in deep learning.
 
