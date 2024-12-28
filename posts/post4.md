@@ -169,7 +169,7 @@ Integration on a manifold is a pairing between formal sums of $k$-dimensional su
 $$\text{ integral } = \int_{\text{ sum of submanifolds } C} \text{ differential form }d\mu.$$
 For integration over groups (and similarly homogeneous spaces), we want the number we get to be invariant if we translate our submanifold by any group element $g$. This leads to the notion of a **left-invariant measure** (resp. right-invariant if the group acts on the right).
 
-Given a $G$-space $X$, a Borel measure $\mu$ is left-invariant if for any subset $C\subseteq X$ and any group element $g$, we have $\mu(g\cdot C) = \mu(C)$. If $X$ is a homogeneous space of a Lie group $G$, then such a measure is called *the* **Haar measure**, whose existence and uniqueness are always guaranteed: 
+Given a $G$-space $X$, a Borel measure $\mu$ is left-invariant if for any subset $C\subseteq X$ and any group element $g$, we have $\mu(g\cdot C) = \mu(C)$. Such a measure on $G$ itself is called *the* **Haar measure**, whose existence and uniqueness are always guaranteed: 
 
 \block{Haar's Theorem}{*For every locally compact Hausdorff topological group $G$, there always exists a countably additive, non-trivial, left-invariant measure $\mu$ satisfying additional finiteness and regularity properties. Furthermore, $\mu$ is unique up to non-zero scalar multiples.*}
 
@@ -182,9 +182,31 @@ This turns out to be a brilliant mnemonic for the definition of the Gamma functi
 
 \block{Examples}{Any rigid motion in $SE(n)$ does not stretch the volume. Therefore, the Haar measure agrees with the usual Lebesgue measure!}
 
-Now, for a homogeneous space $X$ of $G$, we may use its Haar measure $d\mu$ to define an (Hermitian) inner product on the space of $\R$ (resp. $\C$)-valued functions by setting $$\langle f, g\rangle_X:= \int_X fgd\mu.$$
-(The $g$ needs conjugation for the case $\k = \C$.) 
+\block{Examples}{The *left*-invariance can be an important point, since a group can have left- and right-invariant measure not agreeing up to scaling. For example, the group of matrices of the form $$\begin{pmatrix} x & y \\ 0 & 1\end{pmatrix}$$ with $x>0$ has left-invariant measure $\frac{1}{x^2}dxdy$ and right-invariant measure $\frac{1}{x}dxdy$, and they are obviously different. 
 
+Left and right-invariant measures agree for **unimodular groups**, which includes all of compact, discrete,abelian, connected and semisimple, connected and reductive, connected and nilpotent. [BerkeleyNotes](https://math.berkeley.edu/~cjdowd/haar1.pdf) offers a very nice exposition.}
+
+Now, for a homogeneous space $X \cong G/H$, existence of the Haar measure is a bit more tricky, since it depends on something called the *modular function* of the Lie group $G$ and its restriction to $H$. Fortunately, all $X$ in our consideration admits a unique Haar measure, say $d\mu$, which we may use to define an (Hermitian) inner product on the space of $\R$ (resp. $\C$)-valued functions by setting $$\langle f, g\rangle_X:= \int_X fgd\mu.$$
+(The $g$ needs conjugation for the case $\k = \C$.) With that comes a notion of the $L_2$ norm and the space $L_2(X)$, i.e. the **Hilbert space of square integrable functions**. 
+
+Since $G$ acts on $X$, this action naturally extends to an action on $L_2(X)$ where $g$ acts by transforming the domain of $f\in L_2(X)$. More precisely, we have the **left-regular representation** of $G$ on $L_2(X)$, where $g$ operates by $$g\cdot f(x) := f(g^{-1}x).$$
+We take put inverse of $g$ so as to make this a *left*-action. Verify this on your own!
+
+The left-regular representation is particularly important because it is *faithful* (respects all symmetries from $G$) and *unitary* (respects the inner product). In fact, it is a fundamental result in harnomic analysis that such unitary representations on spaces of functions completely decomposes into spaces of *harmonics*. This is the famous **Peter-Weyl Theorem**, aka. Maschke's theorem for harmonic analysts.
+
+\block{The Peter-Weyl Theorem}{*Let $\rho$ be a unitary complex representation of a compact group $G$ on a complex Hilbert space $H$. Then $H$ splits into an orthogonal direct sum of irreducible finite-dimensional unitary representations of $G$.*}
+
+Basis elements for each of the irreducible pieces are called **harmonics**, and the term is justified through the following examples.
+
+\block{Examples}{Let $G = U(1)\cong SO(2)\cong S^1$. Then, $$L_2(G) = \bigoplus_{k\in \mathbb{Z}} \C \cdot Y_k, \quad Y_k(\theta) = e^{i\theta/k}.$$
+This captures the familiar **Fourier transform** between $S^1$ and its **group of complex characters** $\mathbb{Z}$ (aka. **frequencies**), and the basis functions $Y_k(\theta) = e^{i\theta/k}$ are the **circular harmonics.** Taking the real and imaginary parts, we recover the familiar $\cos$ and $\sin$ bases for Fourier series.}
+
+The circular harmonis are called **steerable** in the deep learning literature because they can be "steered" under rotations from $S^1$, and the action of $S^1$ on a signal $f\in L_2(S^1)$ decomposes into steering circular harmonics at different frequencies. 
+
+
+TODO: add circular harmonics picture.
+
+\block{Examples}{Let $X = S^2 \cong SO(3)/SO(2)$ be the $2$-sphere. Then, we have the decomposition $$L_2(S^2) = \bigoplus_{l \in \mathbb{N}}\bigoplus_{m = -l}^l \CC\cdot Y_l^m$$ where $$Y_l^m(\theta, \varphi) = TODO$$ are the famous **spherical harmonics.**}
 
 ## $G$-CNN: Regular v.s. Steerable Networks
 
