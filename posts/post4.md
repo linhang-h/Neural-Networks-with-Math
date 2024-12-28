@@ -3,7 +3,7 @@ title = "Introduction to G-CNNs"
 
 excerpt = "Group convolution is all you need"
 
-image = ""
+image = "/assets/images/harmonics2.png"
 
 authors = "Michael"
 +++
@@ -12,6 +12,8 @@ authors = "Michael"
 # Group Equivariant Neural Networks
 
 This webpage consists of a set of notes we created while studying the course *An Introduction to Group Equivariant Deep Learning* by Erik Bekkers at the University of Amsterdam. The course materials are freely available online at [uvagedl](https://uvagedl.github.io/), and the lecture series is available as a public [playlist](https://www.youtube.com/playlist?list=PL8FnQMH2k7jzPrxqdYufoiYVHim8PyZWd) on YouTube. We owe our deepest gratitude for *Dr.* Erik Bekkers and all other people who created this wonderful course and made the materials publically available. We largely follow the structure of these lectures, even though some of the mathematical details are our own takes on the original arguments. The intrigued reader is highly recommended to check out the original lectures, where concepts are illustrated with many amazing graphics. We hope to duely justify the slogan '*Group convolution is all you need*' through this short digest. 
+
+Picture credit: [Dr. Bernd Frassek](https://www.frassek.org/3d-fl%C3%A4chen/spherical-harmonics/)
 
 \toc
 
@@ -270,7 +272,17 @@ TODO: add schematic of lifting convolution
 
 Schematically, we have infinitely many copies of $X$ in $G = X\rtimes H$ indexed by $H$, represented as the horizontal planes. These are the **sections** of $X$ in $G$. If we fix one such horizontal plane, then we see that there is a copy of $H$ sticking out vertically of each point on the plane. These copies of $H$ are called the **fibers** of the projection map $G\to X$. It is then a question of whether to discritize *horizontally* or *vertically*. 
 
+### Regular $G$-CNNs
 
+Say we want to slice a feature map on $G$ horizontally. Then, each horizontal slice is just a feature map on $X$ itself, and traversing vertically through different copies of $X$ amounts to transforming $X$ under the action of $H$. For example, if we slice up a kernel $\hat{\kappa}$ on $SE(n)$, then each slice $\kappa$ is just a kernel on $\R^n$ rotated from some original position by a rotation in $SO(n)$. Discretizing in this direction then amounts to choosing finitely many transformations in $H$ to approximate all of $H$. 
+
+\block{Example}{If $G = SE(2)$, then we may discretize $H = SO(2) \cong S^1$ by sampling at the $k^{\text{th}}$ roots of unity. This corresponds to choosing a kernel $\kappa \in L_2(\R^2)$ and rotating it $k$ times at angles $2\pi/k$.}
+
+The regular $G$-CNN architecture loses true equivariance, because the kernel is not transformed via all elements in $H$. This approach resembles the traditional method of **data augmentation**, where the input signal is transformed by a discrete subgroup of $H$ and then all fed into a non-equivariant convolutonal layer. The fundamental improvement here is that regular $G$-CNNs are able to capture **local transformations** because the kernel is transformed, while data augmentation methods only captures **global transformations**.
+
+TODO: add schematic of local vs. global.
+
+### 
 
 
 
