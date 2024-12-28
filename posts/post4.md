@@ -233,12 +233,12 @@ The most important examples for us will be the left-regular representation $\mat
 
 We remember that our goal is to build convolutional layers that are equivariant under group translations. Namely, we would like to find equivariant transformations $\mathcal{K}: L_2(X)\to L_2(Y)$. This is the content of *Bekkers ICLR 2020, Thm. 1*: 
 
-\block{Theorem **(Group convolution is all you need!)**}{Let $\mathcal{K}: L_2(X) \rightarrow L_2(Y)$ map between signals on homogeneous spaces of $G$.
-Let homogeneous space $Y \equiv G / H$ such that $H=\operatorname{Stab}_G\left(y_0\right)$ for some chosen origin $y_0 \in Y$ and let $g_y \in G$ such that $\forall_{y \in Y}: y=g_y y_0$. Fix the left-regular representations on $L_2(X)$ and $L_2(Y)$. 
+\block{Theorem **(Group convolution is all you need!)**}{*Let $\mathcal{K}: L_2(X) \rightarrow L_2(Y)$ map between signals on homogeneous spaces of $G$.
+Let homogeneous space $Y \equiv G / H$ such that $H=\operatorname{Stab}_G\left(y_0\right)$ for some chosen origin $y_0 \in Y$ and let $g_y \in G$ such that $\forall_{y \in Y}: y=g_y y_0$. Fix the left-regular representations on $L_2(X)$ and $L_2(Y)$.* 
 
-Then $\mathcal{K}$ is equivariant to group $G$ if and only if:
-1. It is a group convolution: $(\mathcal{K} f)(y)=\int_X \kappa\left(g_y^{-1} x\right) f(x) \mathrm{d}\mu(x)$.
-2. The kernel is $H$-invariant: $\quad \forall_{h \in H}: k(h^{-1} x)=k(x)$.}
+*Then $\mathcal{K}$ is equivariant to group $G$ if and only if:*
+1. *It is a group convolution: $(\mathcal{K} f)(y)=\int_X \kappa\left(g_y^{-1} x\right) f(x) \mathrm{d}\mu(x)$.*
+2. *The kernel is $H$-invariant: $k(h^{-1} x)=k(x)$ for all $h\in H$.*}
 
 ## $G$-CNN: Regular v.s. Steerable Networks
 
