@@ -231,7 +231,7 @@ Homework: verify that $G$-convolutions are indeed equivariant!
 
 The most important examples for us will be the left-regular representation $\mathcal{L}$ and convolutions going between $L_2(X)\to L_2(X)$, $L_2(X)\to L_2(G),$ and $L_2(G)\to L_2(X)$, as we will see in a moment. 
 
-We remember that our goal is to build convolutional layers that are equivariant under group translations. Namely, we would like to find equivariant transformations $\mathcal{K}: L_2(X)\to L_2(Y)$. This is the content of [Bekkers ICLR 2020, Thm. 1]: 
+We remember that our goal is to build convolutional layers that are equivariant under group translations. Namely, we would like to find equivariant transformations $\mathcal{K}: L_2(X)\to L_2(Y)$. This is the content of *Bekkers ICLR 2020, Thm. 1*: 
 
 \block{Theorem **(Group convolution is all you need!)**}{Let $\mathcal{K}: L_2(X) \rightarrow L_2(Y)$ map between signals on homogeneous spaces of $G$.
 Let homogeneous space $Y \equiv G / H$ such that $H=\operatorname{Stab}_G\left(y_0\right)$ for some chosen origin $y_0 \in Y$ and let $g_y \in G$ such that $\forall_{y \in Y}: y=g_y y_0$. Fix the left-regular representations on $L_2(X)$ and $L_2(Y)$. 
