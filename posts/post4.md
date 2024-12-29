@@ -61,7 +61,7 @@ It is an inevitable consequence that the data inputted in neural networks come w
 
 To do this, we ask the generalized convolution layers to satisfy a similar property: 
 
-<p style="text-align: center;"> Group convolution followed by group translation should be the same as group translation followed by group convolution. </p>
+~~~<p style="text-align: center;"> Group convolution followed by group translation should be the same as group translation followed by group convolution. </p>~~~
 
 $$\begin{tikzcd}
 	f & {\hat{f}} \\
@@ -95,11 +95,14 @@ Given such, the general architecture of a $G$-CNN is as follows:
 5. Repeat steps 3 and 4. 
 6. Project down to $X$ by max pooling over $H$. 
 
+~~~<img src="./post4 assets/G-CNN-architecture.png" alt="Image Description" style="width:100%; max-width:100%; height:auto;">~~~
+
+~~~<img src="_assets/images/harmonics.png" alt="Image Description 2" style="width:100%; max-width:100%; height:auto;">~~~
+
 ![GCNN](/_assets/images/G-CNN-architecture.png)
 
-@@small-img
-\fig{/_assets/images/G-CNN-architecture.png}
-@@
+\fig{./post4 assets/G-CNN-architecture.png}
+
 
 In the next sections, we are going to build up the necessary representation theory and investigate how such $G$-convolution layers can be built computationally. 
 
