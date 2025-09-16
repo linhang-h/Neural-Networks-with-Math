@@ -27,7 +27,7 @@ The diffusion processes the models usually use are [Ornstein–Uhlenbeck process
     dX_t = \frac{g(t)^2}{2\sigma^2}(\mu - X_t)dt + g(t)dB_t,
 \end{equation} where $\mu\in \R^d$, $B_t$ is the $d$-dimensional Brownian motion and $g(t)$ is a strictly positive function. 
 
-Unlike Brownian motion, the process $X_t$ has the stationary distribution $N(\mu,\sigma^2)$ and an explicit transition probabiliy: for $s\leq t$, conditioning on $X_s = x_s$, $X_t$ is normally distributed with mean $m_{s,t}$ and variance $\sigma^2_{s,t}$, where \begin{align}
+Unlike Brownian motion, the process $X_t$ has the stationary distribution $N(\mu,\sigma^2)$ and an explicit transition probabiliy: for $s\leq t$, conditioning on $X_s = x_s$, $X_t$ is normally distributed with mean $m_{s,t}$ and variance $\sigma^2_{s,t}\mathbf{Id}$, where \begin{align}
     m_{s,t} &= \mu + (x_s-\mu)\exp\left(-\frac{1}{2\sigma^2}\int_s^t g(t)^2 dt\right),\\
     \sigma^2_{s,t} &= \sigma^2\left(1-\exp\left(-\frac{1}{\sigma^2}\int_s^t g(t)^2 dt\right)\right).\label{mean_var}
 \end{align}
@@ -45,7 +45,7 @@ Assuming $T$ is large enough that $x_n$ is approximately distributed according t
 
 ## Score matching
 
-Since $g(t)$, $\mu$ and $\sigma$ are known, we only need an estimate of $\nabla_x\log p_t$ to approximate the time-reserval process. The gradient of log density $\nabla \log p:\R^d\to \R^d$ is known as the **score**. The idea of learning the score of a data distribution rather than the distribution itself is usually referred to as **Score matching**. 
+Since $g(t)$, $\mu$ and $\sigma$ are known, we only need an estimate of $\nabla_x\log p_t$ to approximate the time-reserval process. The gradient of log density $\nabla \log p:\R^d\to \R^d$ is known as the **score**. The idea of learning the score of a data distribution rather than the distribution itself is usually referred to as **score matching**. 
 
 One major advantage of this idea is that we do not need to normalize our estimate: If we use a neural network $f(\theta;x)$ to approximate some density $p(x)$, we need to make sure that $\int f(\theta;x)dx=1$. Computing such an integral can be challenging or even intractable. 
 
@@ -78,6 +78,25 @@ To sample training data given the loss function \eqref{loss}, we can first sampl
     \left\Vert f(\theta;x_I,t_I) + \frac{x_I-m_{0,t_I}(x_0)}{\sigma_{0,t_I}}\right\Vert^2.
 \end{equation*}
 
+Here is a sketch for the training code when sampling from a DataLoader.
+
+```python
+for epoch in range(N):
+    for x0 in loader:
+        t = t_seq[torch.multinomial(pmf)] # pmf for lambda_i
+        mean = m(0, t, x0) 
+        std = sigma(0, t) # both mean and std computed using g(t)
+        xt = torch.distributions.multivariate_normal.
+            MultivariateNormal(mean, std*torch.eye(d))
+        
+        pred_score = model(xt, t)
+        loss = F.mse_loss(pred_score, (xt-mean)/std)
+        
+        opt.zero_grad()
+        loss.backward()
+        opt.step()
+    print(f"Epoch {epoch+1}: loss {loss.item():.4f}")
+```
 
 ## Conditioning
 In many practical applications of generative models, instead of simply sampling from the data distribution $p$, we want to generate data given certain properties. For example, in image generation, we want an image that fits a certain text discription. 
@@ -92,3 +111,9 @@ Bayes' rule implies that \begin{equation*}
 Once we have trained the network $f(\theta;x,t)\approx \nabla_xp_t(x)$. We can generate new data by sampling $x_n$ from $N(\mu,\sigma^2)$ and then simulate either the SDE \eqref{eq2} or the ODE \begin{equation}
     d\widetilde{x}_t = \left[-\frac{g(T-t)^2}{2\sigma^2}(\mu-\widetilde{x}_t) + \frac{1}{2}g(T-t)^2\nabla_x\log p_{T-t}(\widetilde{x}_t)\right]dt.
 \end{equation} The two processes give the same marginal distributions for $x_t$. Emperically, the SDE gives samples of better quality while the ODE benefits in faster convergence.
+
+
+## References
+1. Jonathan Ho, Ajay Jain, and Pieter Abbeel. Denoising diffusion probabilistic models. In NeurIPS, 2020.
+2. Yang Song, Jascha Sohl-Dickstein, Diederik P. Kingma, Abhishek Kumar, Stefano Ermon, and Ben Poole. Score-based generative modeling through stochastic differential equations. In ICLR. OpenReview.net, 2021.
+3. Conghan Yue, Zhengwei Peng, Junlong Ma, Shiyan Du, Pengxu Wei, and Dongyu Zhang. Image restoration through generalized Ornstein-Uhlenbck bridge. In ICML. OpenReview.net, 2024.

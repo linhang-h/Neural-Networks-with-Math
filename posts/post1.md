@@ -3,7 +3,7 @@ title = "Equivariant Neural Networks"
 
 excerpt = "How equivariance can be leveraged in neural network models"
 
-image = "/assets/images/equivariant.png"
+image = "/assets/images/equivariant.jpg"
 
 authors = "Linhang"
 +++
@@ -122,5 +122,9 @@ We note that given a function (or a nice enough distribution) in $L^2(\mathbb{S}
 If we write $f = f_b + f_r$ where $f_b\in \mathbf{Y}^{[b]}$ and $f^b \perp f^r$, we can see that operation $\text{Proj}_{\mathbf{Y}^{[b]}}(\cdot s)$ is only $SO(3)$-equivariant on the set \begin{equation}
     \{f\in L^2(\mathbb{S}^2)~|~(g\cdot f_r)s - g\cdot (f_rs) \perp \mathbf{Y}^{[b]}\quad \text{for all}\quad g\in SO(3)\}.
 \end{equation}
+
+
+## References
+1. Esteves, C., Allen-Blanchette, C., Makadia, A. et al. Learning SO(3) Equivariant Representations with Spherical CNNs. Int J Comput Vis 128, 588–600 (2020).
 
 [paper1]: https://arxiv.org/abs/1711.06721
