@@ -1,3 +1,10 @@
+# FranklinTheorems package for amsthms
+# Includes the Package, bringing the lx_functions into scope
+# using FranklinTheorems
+# Includes the custom markdown files, bringing the `\newcommand` and `\newenvironment` definitions into scope.
+# Franklin.include_external_config(FranklinTheorems.config_path()) 
+
+
 function hfun_bar(vname)
     val = Meta.parse(vname[1])
     return round(sqrt(val), digits=2)
